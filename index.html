@@ -1,0 +1,44 @@
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Firebase App</title>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <h1>Daily To-do list Firebase Application</h1>
+
+    <div class="wrapper">
+
+        <form id="add-exercise">
+            <input type="text" name="name" placeholder="Exercise name">
+            <button>Add</button>
+        </form>
+
+        <ul id="exercises-list"></ul>
+
+    </div>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBJoR0ohoeLXz8BqgejGY4lbhBtVSs7ilM",
+            authDomain: "firstfirebaseapp-ba5c6.firebaseapp.com",
+            databaseURL: "https://firstfirebaseapp-ba5c6.firebaseio.com",
+            projectId: "firstfirebaseapp-ba5c6",
+            storageBucket: "firstfirebaseapp-ba5c6.appspot.com",
+            messagingSenderId: "761233659035"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+    </script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
