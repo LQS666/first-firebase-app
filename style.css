@@ -9,7 +9,7 @@ body {
     flex-direction: column;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background: #2ecc71;
+    background: #f7d794;
 }
 
 h1 {
@@ -72,10 +72,11 @@ ul li span.name {
     padding: 0 5px;
     transition: .5s;
     transition-delay: .5s;
+    cursor: pointer;
 }
 
 ul li input[type="checkbox"]:checked~span.name {
-    color: #27ae60;
+    color: #e58e26;
     transition-delay: 0s;
 }
 
@@ -123,6 +124,7 @@ ul li span.icon {
     display: inline-block;
     margin-right: 5px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 ul li span.icon:before {
@@ -138,7 +140,7 @@ ul li input[type="checkbox"]:checked~span.icon:before {
     transform: translateY(0) scale(1);
 }
 
-ul li label div.deleteBtn {
+ul li div.deleteBtn {
     color: #e74c3c;
     display: inline-block;
     position: absolute;
@@ -149,7 +151,7 @@ ul li label div.deleteBtn {
     transition: .5s;
 }
 
-ul li label div.deleteBtn:hover {
+ul li div.deleteBtn:hover {
     background: #e74c3c;
     color: white;
 }

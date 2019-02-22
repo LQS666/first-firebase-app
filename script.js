@@ -19,21 +19,40 @@ function renderExercise(doc) {
     deleteBtn.textContent = 'delete';
     deleteBtn.classList.add('deleteBtn');
 
+    if (doc.data().isDone == true) {
+        input.checked = true;
+    }
+
 
     label.appendChild(input);
     label.appendChild(icon);
     label.appendChild(name);
-    label.appendChild(deleteBtn);
     li.appendChild(label);
+    li.appendChild(deleteBtn);
 
     exercisesList.appendChild(li);
 
+    input.addEventListener('click', (e) => {
+        let id = e.target.parentElement.parentElement.getAttribute('data-id');
+        if (e.target.checked) {
+            db.collection('exercises').doc(id).update({
+                isDone: true
+            })
+        } else {
+            db.collection('exercises').doc(id).update({
+                isDone: false
+            })
+        }
+    })
 
     // Deleting Tasks 
     deleteBtn.addEventListener('click', (e) => {
-        let id = e.target.parentElement.parentElement.getAttribute('data-id');
+        let id = e.target.parentElement.getAttribute('data-id');
         db.collection('exercises').doc(id).delete();
     })
+
+
+
 }
 
 
@@ -50,7 +69,8 @@ function renderExercise(doc) {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('exercises').add({
-        name: form.name.value
+        name: form.name.value,
+        isDone: false
     })
     form.name.value = '';
 })
