@@ -131,3 +131,19 @@ ul li span.icon:before {
 ul li input[type="checkbox"]:checked~span.icon:before {
     transform: translateY(0) scale(1);
 }
+
+ul li label div.deleteBtn {
+    color: #e74c3c;
+    display: inline-block;
+    position: absolute;
+    margin-left: 15px;
+    border: 1px solid #e74c3c;
+    padding: 0 14px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+ul li label div.deleteBtn:hover {
+    background: #e74c3c;
+    color: white;
+}
