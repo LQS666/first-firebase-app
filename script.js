@@ -1,7 +1,7 @@
 const exercisesList = document.querySelector('#exercises-list');
 const form = document.querySelector('#add-exercise');
 
-// Create element and render cafe
+// Creating element and rendering List
 function renderExercise(doc) {
     let li = document.createElement('li');
     let label = document.createElement("label");
@@ -29,22 +29,42 @@ function renderExercise(doc) {
     exercisesList.appendChild(li);
 
 
+    // Deleting Tasks 
     deleteBtn.addEventListener('click', (e) => {
         let id = e.target.parentElement.parentElement.getAttribute('data-id');
         db.collection('exercises').doc(id).delete();
     })
 }
 
-db.collection('exercises').orderBy('name').get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-        renderExercise(doc);
-    })
-})
 
+// Getting Tasks from firebase
+
+// db.collection('exercises').orderBy('name').get().then((snapshot) => {
+//     snapshot.docs.forEach(doc => {
+//         renderExercise(doc);
+//     })
+// })
+
+
+// Adding Task
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     db.collection('exercises').add({
         name: form.name.value
     })
     form.name.value = '';
+})
+
+
+// Getting Tasks from firebase ( real-time )
+db.collection('exercises').orderBy('name').onSnapshot(snapshot => {
+    let changes = snapshot.docChanges();
+    changes.forEach(change => {
+        if (change.type == 'added') {
+            renderExercise(change.doc);
+        } else if (change.type == 'removed') {
+            let li = exercisesList.querySelector('[data-id=' + change.doc.id + ']');
+            exercisesList.removeChild(li);
+        }
+    })
 })

@@ -42,6 +42,12 @@ h1 {
     color: white;
     border: 1px solid black;
     padding: 10px 20px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#add-exercise button:hover {
+    background: rgba(0, 0, 0, .7);
 }
 
 ul {
